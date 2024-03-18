@@ -3,6 +3,7 @@ import React from 'react'
 import styles from './styles'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { useNavigation } from '@react-navigation/native'
+import BottomBar from '../../components/BottomBar/BottomBar'
 
 const Home = () => {
   const navigation = useNavigation();
@@ -29,6 +30,11 @@ const Home = () => {
           <Icon name="search" size={28} color="#666" />
         </View>
       </View>
+
+      <View style={styles.content}>
+      </View>
+
+      <BottomBar />
     </SafeAreaView>
   )
 }
