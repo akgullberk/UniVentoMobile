@@ -1,12 +1,19 @@
-import {Text, View } from 'react-native'
+import {Text, View, SafeAreaView } from 'react-native'
 import React from 'react'
-import  styles  from './styles'
+import styles from './styles'
 
 const Home = () => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.topBar}>
+        <View style={styles.menuIcon}>
+          <View style={styles.menuLine} />
+          <View style={styles.menuLine} />
+          <View style={styles.menuLine} />
+        </View>
+        <Text style={styles.title}>UniVento</Text>
+      </View>
+    </SafeAreaView>
   )
 }
 
