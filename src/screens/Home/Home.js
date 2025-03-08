@@ -1,23 +1,24 @@
-import {Text, View, SafeAreaView, TextInput } from 'react-native'
+import {Text, View, SafeAreaView, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import styles from './styles'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { useNavigation } from '@react-navigation/native'
 
 const Home = () => {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topBar}>
-        <View style={styles.menuIcon}>
-          <View style={styles.menuLine} />
-          <View style={styles.menuLine} />
-          <View style={styles.menuLine} />
-        </View>
+        <Icon name="menu" size={28} color="#fff" />
         
         <View style={styles.centerContainer}>
           <Text style={styles.title}>UniVento</Text>
         </View>
 
-        <Icon name="notifications" size={24} color="#fff" />
+        <TouchableOpacity onPress={() => navigation.navigate('KulupSecme')}>
+          <Icon name="notifications" size={24} color="#fff" />
+        </TouchableOpacity>
 
         <View style={styles.searchContainer}>
           <TextInput 
