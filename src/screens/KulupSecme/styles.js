@@ -76,5 +76,27 @@ export default StyleSheet.create({
         color: '#fff',
         fontSize: 20,
         fontWeight: 'bold'
-    }
+    },
+    card: {
+        flex: 1,
+        margin: 10,
+        borderRadius: 10,
+        backgroundColor: 'white',
+        alignItems: 'center',
+        padding: 10,
+        elevation: 3,
+    },
+    logo: {
+        width: 100,
+        height: 100,
+        marginBottom: 5,
+    },
+    clubName: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    listContainer: {
+        paddingHorizontal: 10,
+    },
 }) 
