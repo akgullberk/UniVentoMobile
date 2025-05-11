@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "852055517769",
+    "project_id": "univento-87b49",
+    "storage_bucket": "univento-87b49.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852055517769:android:094670abd42deb8ccd2d98",
+        "android_client_info": {
+          "package_name": "com.univento"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoR22lKya1AmYbZ5eGfDN_H81kZrQVEV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
