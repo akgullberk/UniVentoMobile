@@ -47,4 +47,28 @@ export const createEvent = async (eventData) => {
     console.error('Etkinlik eklenirken hata oluştu:', error);
     throw error;
   }
+};
+
+// Kulüp başkanının katılım isteklerini görüntülemesi
+export const getParticipationRequests = async (clubPresidentEmail) => {
+  try {
+    const response = await axios.get(`${API_URL}/events/participation-requests/${clubPresidentEmail}`);
+    return response.data;
+  } catch (error) {
+    console.error('Katılım istekleri alınırken hata oluştu:', error);
+    throw error;
+  }
+};
+
+// Katılım isteğini onayla veya reddet
+export const updateParticipationRequest = async (requestId, status) => {
+  try {
+    const response = await axios.put(`${API_URL}/events/participation-requests/${requestId}`, {
+      status: status
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Katılım isteği güncellenirken hata oluştu:', error);
+    throw error;
+  }
 }; 

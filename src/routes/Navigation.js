@@ -5,6 +5,9 @@ import GirisKayit from "../screens/GirisKayit/GirisKayit";
 import Profil from "../screens/Profil/Profil";
 import EventDetail from "../screens/EventDetail/EventDetail";
 import CreateEvent from "../screens/CreateEvent/CreateEvent";
+import ProfileInfo from "../screens/ProfileInfo/ProfileInfo";
+import MyEvents from "../screens/MyEvents/MyEvents";
+import ParticipationRequests from "../screens/ParticipationRequests/ParticipationRequests";
 import { useAuth } from "../context/AuthContext";
 import { ActivityIndicator, View } from "react-native";
 
@@ -30,6 +33,9 @@ const Navigation = () => {
                     <Stack.Screen name="KulupSecme" component={KulupSecme} />
                     <Stack.Screen name="Profil" component={Profil} />
                     <Stack.Screen name="CreateEvent" component={CreateEvent} />
+                    <Stack.Screen name="ProfileInfo" component={ProfileInfo} />
+                    <Stack.Screen name="Etkinliklerim" component={MyEvents} />
+                    <Stack.Screen name="ParticipationRequests" component={ParticipationRequests} />
                 </>
             ) : (
                 <Stack.Screen name="GirisKayit" component={GirisKayit} />

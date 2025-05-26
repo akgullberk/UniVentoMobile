@@ -161,6 +161,10 @@ const Profil = () => {
 
   const renderPresidentMenu = () => (
     <View style={styles.menuContainer}>
+      <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('ProfileInfo')}>
+        <Icon name="account-details" size={24} color="#333" />
+        <Text style={styles.menuText}>Profil Bilgileri</Text>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('KulupDuzenle')}>
         <Icon name="account-edit" size={24} color="#333" />
         <Text style={styles.menuText}>Kulüp Bilgilerini Düzenle</Text>
@@ -173,31 +177,24 @@ const Profil = () => {
         <Icon name="account-group" size={24} color="#333" />
         <Text style={styles.menuText}>Üye Yönetimi</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('KulupIstatistikleri')}>
-        <Icon name="chart-bar" size={24} color="#333" />
-        <Text style={styles.menuText}>Kulüp İstatistikleri</Text>
+      <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Etkinliklerim')}>
+        <Icon name="calendar-check" size={24} color="#333" />
+        <Text style={styles.menuText}>Etkinliklerim</Text>
       </TouchableOpacity>
     </View>
   );
 
   const renderUserMenu = () => (
     <View style={styles.menuContainer}>
+      <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('ProfileInfo')}>
+        <Icon name="account-details" size={24} color="#333" />
+        <Text style={styles.menuText}>Profil Bilgileri</Text>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('ProfilDuzenle')}>
         <Icon name="account-edit" size={24} color="#333" />
         <Text style={styles.menuText}>Profili Düzenle</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Bildirimler')}>
-        <Icon name="bell-outline" size={24} color="#333" />
-        <Text style={styles.menuText}>Bildirimler</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Etkinliklerim')}>
-        <Icon name="calendar-check" size={24} color="#333" />
-        <Text style={styles.menuText}>Etkinliklerim</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Kuluplerim')}>
-        <Icon name="account-group" size={24} color="#333" />
-        <Text style={styles.menuText}>Kulüplerim</Text>
-      </TouchableOpacity>
+      
     </View>
   );
 
