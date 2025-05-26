@@ -8,6 +8,7 @@ import CreateEvent from "../screens/CreateEvent/CreateEvent";
 import ProfileInfo from "../screens/ProfileInfo/ProfileInfo";
 import MyEvents from "../screens/MyEvents/MyEvents";
 import ParticipationRequests from "../screens/ParticipationRequests/ParticipationRequests";
+import MembershipRequests from "../screens/MembershipRequests/MembershipRequests";
 import { useAuth } from "../context/AuthContext";
 import { ActivityIndicator, View } from "react-native";
 
@@ -36,6 +37,7 @@ const Navigation = () => {
                     <Stack.Screen name="ProfileInfo" component={ProfileInfo} />
                     <Stack.Screen name="Etkinliklerim" component={MyEvents} />
                     <Stack.Screen name="ParticipationRequests" component={ParticipationRequests} />
+                    <Stack.Screen name="MembershipRequests" component={MembershipRequests} />
                 </>
             ) : (
                 <Stack.Screen name="GirisKayit" component={GirisKayit} />

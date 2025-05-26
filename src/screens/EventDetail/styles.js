@@ -22,6 +22,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  mainContainer: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+  },
   content: {
     flex: 1,
   },
@@ -31,6 +36,7 @@ const styles = StyleSheet.create({
   },
   eventInfo: {
     padding: 20,
+    paddingBottom: 80,
   },
   eventName: {
     fontSize: 24,
@@ -67,17 +73,36 @@ const styles = StyleSheet.create({
     color: '#555',
     lineHeight: 24,
   },
-  joinButton: {
-    backgroundColor: '#88141c',
-    paddingVertical: 15,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 25,
+  bottomContainer: {
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor: '#f5f5f5',
   },
-  joinButtonText: {
+  participateButton: {
+    backgroundColor: '#88141c',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    margin: 15,
+    marginBottom: 70,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  participateButtonText: {
     color: '#fff',
-    fontWeight: 'bold',
     fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 10,
   },
 });
 

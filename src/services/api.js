@@ -71,4 +71,50 @@ export const updateParticipationRequest = async (requestId, status) => {
     console.error('Katılım isteği güncellenirken hata oluştu:', error);
     throw error;
   }
+};
+
+// Kulüp başkanının üyelik başvurularını görüntülemesi
+export const getMembershipRequests = async (clubPresidentEmail) => {
+  try {
+    const response = await axios.get(`${API_URL}/clubs/membership-requests/${clubPresidentEmail}`);
+    return response.data;
+  } catch (error) {
+    console.error('Üyelik başvuruları alınırken hata oluştu:', error);
+    throw error;
+  }
+};
+
+// Üyelik başvurusunu onayla veya reddet
+export const updateMembershipRequest = async (requestId, status) => {
+  try {
+    const response = await axios.put(`${API_URL}/clubs/membership-requests/${requestId}`, {
+      status: status
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Üyelik başvurusu güncellenirken hata oluştu:', error);
+    throw error;
+  }
+};
+
+// Etkinliğe katılım isteği gönder
+export const sendParticipationRequest = async (eventId, email) => {
+  try {
+    const formData = new FormData();
+    formData.append('email', email);
+
+    const response = await axios.post(
+      `${API_URL}/events/${eventId}/participate`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Katılım isteği gönderilirken hata oluştu:', error);
+    throw error;
+  }
 }; 

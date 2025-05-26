@@ -178,8 +178,12 @@ const Profil = () => {
         <Text style={styles.menuText}>Üye Yönetimi</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Etkinliklerim')}>
-        <Icon name="calendar-check" size={24} color="#333" />
-        <Text style={styles.menuText}>Etkinliklerim</Text>
+        <Icon name="event" size={24} color="#88141c" />
+        <Text style={styles.menuItemText}>Etkinliklerim</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('MembershipRequests')}>
+        <Icon name="group" size={24} color="#88141c" />
+        <Text style={styles.menuItemText}>Üye Yönetimi</Text>
       </TouchableOpacity>
     </View>
   );
