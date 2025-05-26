@@ -1,13 +1,60 @@
-import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, SafeAreaView, TextInput, TouchableOpacity, Alert, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 import styles from './styles'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { useNavigation } from '@react-navigation/native'
 import BottomBar from '../../components/BottomBar/BottomBar'
+import { useAuth } from '../../context/AuthContext'
 
 const GirisKayit = () => {
   const navigation = useNavigation();
-  const [isLogin, setIsLogin] = useState(true); // true: giriş, false: kayıt
+  const { signIn, signUp, loading } = useAuth();
+  const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleLogin = async () => {
+    try {
+      if (!email || !password) {
+        Alert.alert('Hata', 'Lütfen tüm alanları doldurun.');
+        return;
+      }
+      
+      await signIn(email, password);
+    } catch (error) {
+      console.error(error);
+      Alert.alert('Hata', 'Giriş yapılırken bir hata oluştu: ' + error.message);
+    }
+  };
+
+  const handleRegister = async () => {
+    try {
+      if (!email || !password || !name || !confirmPassword) {
+        Alert.alert('Hata', 'Lütfen tüm alanları doldurun.');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        Alert.alert('Hata', 'Şifreler eşleşmiyor.');
+        return;
+      }
+
+      await signUp(email, password, name);
+    } catch (error) {
+      console.error(error);
+      Alert.alert('Hata', 'Kayıt olurken bir hata oluştu: ' + error.message);
+    }
+  };
+
+  if (loading) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <ActivityIndicator size="large" color="#88141c" />
+      </View>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -18,9 +65,9 @@ const GirisKayit = () => {
           <Text style={styles.title}>UniVento</Text>
         </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate('KulupSecme')}>
+        <View style={styles.iconContainer}>
           <Icon name="notifications" size={24} color="#fff" />
-        </TouchableOpacity>
+        </View>
       </View>
 
       <View style={styles.content}>
@@ -46,6 +93,10 @@ const GirisKayit = () => {
               style={styles.input}
               placeholder="E-posta adresinizi giriniz"
               placeholderTextColor="#666"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
             />
             <Text style={styles.inputLabel}>Şifre</Text>
             <TextInput 
@@ -53,9 +104,17 @@ const GirisKayit = () => {
               placeholder="Şifrenizi giriniz"
               placeholderTextColor="#666"
               secureTextEntry
+              value={password}
+              onChangeText={setPassword}
             />
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Giriş Yap</Text>
+            <TouchableOpacity 
+              style={styles.button} 
+              onPress={handleLogin}
+              disabled={loading}
+            >
+              <Text style={styles.buttonText}>
+                {loading ? 'Giriş Yapılıyor...' : 'Giriş Yap'}
+              </Text>
             </TouchableOpacity>
           </View>
         ) : (
@@ -65,12 +124,18 @@ const GirisKayit = () => {
               style={styles.input}
               placeholder="Ad ve soyadınızı giriniz"
               placeholderTextColor="#666"
+              value={name}
+              onChangeText={setName}
             />
             <Text style={styles.inputLabel}>E-posta</Text>
             <TextInput 
               style={styles.input}
               placeholder="E-posta adresinizi giriniz"
               placeholderTextColor="#666"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
             />
             <Text style={styles.inputLabel}>Şifre</Text>
             <TextInput 
@@ -78,6 +143,8 @@ const GirisKayit = () => {
               placeholder="Şifrenizi giriniz"
               placeholderTextColor="#666"
               secureTextEntry
+              value={password}
+              onChangeText={setPassword}
             />
             <Text style={styles.inputLabel}>Şifre Tekrar</Text>
             <TextInput 
@@ -85,9 +152,17 @@ const GirisKayit = () => {
               placeholder="Şifrenizi tekrar giriniz"
               placeholderTextColor="#666"
               secureTextEntry
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
             />
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Üye Ol</Text>
+            <TouchableOpacity 
+              style={styles.button} 
+              onPress={handleRegister}
+              disabled={loading}
+            >
+              <Text style={styles.buttonText}>
+                {loading ? 'Kayıt Yapılıyor...' : 'Üye Ol'}
+              </Text>
             </TouchableOpacity>
           </View>
         )}

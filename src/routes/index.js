@@ -1,13 +1,16 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import Navigation from './Navigation';
+import { AuthProvider } from '../context/AuthContext';
 
-const index = () => {
+const App = () => {
     return (
+        <AuthProvider>
         <NavigationContainer>
             <Navigation />
         </NavigationContainer>
+        </AuthProvider>
     );
 };
 
-export default index;
+export default App;

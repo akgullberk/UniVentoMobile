@@ -90,6 +90,7 @@ export default StyleSheet.create({
         width: 100,
         height: 100,
         marginBottom: 5,
+        resizeMode: 'stretch',
     },
     clubName: {
         fontSize: 16,
