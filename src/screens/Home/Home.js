@@ -14,6 +14,8 @@ const Home = () => {
   const navigation = useNavigation();
   const { user, signOut } = useAuth();
   const [events, setEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,10 +26,25 @@ const Home = () => {
     try {
       const data = await getEvents();
       setEvents(data);
+      setFilteredEvents(data);
     } catch (error) {
       console.error('Etkinlikler yüklenirken hata:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSearch = (text) => {
+    setSearchQuery(text);
+    if (text.trim() === '') {
+      setFilteredEvents(events);
+    } else {
+      const filtered = events.filter(event => 
+        event.name.toLowerCase().includes(text.toLowerCase()) ||
+        event.location.toLowerCase().includes(text.toLowerCase()) ||
+        (event.details && event.details.toLowerCase().includes(text.toLowerCase()))
+      );
+      setFilteredEvents(filtered);
     }
   };
 
@@ -85,6 +102,8 @@ const Home = () => {
             style={styles.searchInput}
             placeholder="Etkinlik ara..."
             placeholderTextColor="#666"
+            value={searchQuery}
+            onChangeText={handleSearch}
           />
           <Icon name="search" size={28} color="#666" />
         </View>
@@ -99,7 +118,7 @@ const Home = () => {
           </View>
         ) : (
           <FlatList
-            data={events}
+            data={filteredEvents}
             renderItem={renderEventCard}
             keyExtractor={(item, index) => index.toString()}
             numColumns={2}

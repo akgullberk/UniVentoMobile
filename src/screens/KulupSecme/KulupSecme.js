@@ -9,6 +9,8 @@ const KulupSecme = () => {
   const navigation = useNavigation();
   const { user } = useAuth();
   const [clubs, setClubs] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredClubs, setFilteredClubs] = useState([]);
 
   const getLogoForClub = (clubName) => {
     switch (clubName) {
@@ -29,7 +31,7 @@ const KulupSecme = () => {
 
   useEffect(() => {
     if (!user) {
-      return; // Kullanıcı giriş yapmamışsa API çağrısı yapma
+      return;
     }
 
     const fetchClubs = async () => {
@@ -37,12 +39,28 @@ const KulupSecme = () => {
         const response = await fetch('http://16.170.205.160/clubs');
         const data = await response.json();
         setClubs(data);
+        setFilteredClubs(data);
       } catch (error) {
         console.error(error);
       }
     };
     fetchClubs();
   }, [user]);
+
+  // Arama işlevi
+  const handleSearch = (text) => {
+    setSearchQuery(text);
+    if (text.trim() === '') {
+      setFilteredClubs(clubs);
+    } else {
+      const filtered = clubs.filter(club => 
+        club.name.toLowerCase().includes(text.toLowerCase()) ||
+        (club.category && club.category.toLowerCase().includes(text.toLowerCase())) ||
+        (club.description && club.description.toLowerCase().includes(text.toLowerCase()))
+      );
+      setFilteredClubs(filtered);
+    }
+  };
 
   const renderItem = ({ item }) => (
     <TouchableOpacity 
@@ -57,7 +75,7 @@ const KulupSecme = () => {
   );
 
   if (!user) {
-    return null; // Kullanıcı giriş yapmamışsa hiçbir şey gösterme
+    return null;
   }
 
   return (
@@ -67,12 +85,14 @@ const KulupSecme = () => {
           style={styles.searchInput}
           placeholder="Kulüp ara"
           placeholderTextColor="#666"
+          value={searchQuery}
+          onChangeText={handleSearch}
         />
         <Icon name="search" size={28} color="#666" style={styles.searchIcon} />
       </View>
 
       <FlatList
-        data={clubs}
+        data={filteredClubs}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         numColumns={2}
