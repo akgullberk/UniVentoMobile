@@ -9,6 +9,7 @@ import ProfileInfo from "../screens/ProfileInfo/ProfileInfo";
 import MyEvents from "../screens/MyEvents/MyEvents";
 import ParticipationRequests from "../screens/ParticipationRequests/ParticipationRequests";
 import MembershipRequests from "../screens/MembershipRequests/MembershipRequests";
+import KulupDetay from "../screens/KulupDetay/KulupDetay";
 import { useAuth } from "../context/AuthContext";
 import { ActivityIndicator, View } from "react-native";
 
@@ -32,6 +33,7 @@ const Navigation = () => {
             {user ? (
                 <>
                     <Stack.Screen name="KulupSecme" component={KulupSecme} />
+                    <Stack.Screen name="KulupDetay" component={KulupDetay} />
                     <Stack.Screen name="Profil" component={Profil} />
                     <Stack.Screen name="CreateEvent" component={CreateEvent} />
                     <Stack.Screen name="ProfileInfo" component={ProfileInfo} />

@@ -48,7 +48,7 @@ const KulupSecme = () => {
     <TouchableOpacity 
       style={styles.card} 
       onPress={() => {
-        console.log(`Tıklanan kulüp: ${item.name}`);
+        navigation.navigate('KulupDetay', { club: item });
       }}
     >
       <Image source={getLogoForClub(item.name)} style={styles.logo} />
